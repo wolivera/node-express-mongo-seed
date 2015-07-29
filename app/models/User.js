@@ -25,4 +25,19 @@ var UserSchema = new Schema({
 	}
 });
 
+UserSchema.methods = {
+
+	createSession : function(done){
+				
+	}
+};
+
+
+
+UserSchema.statics = {
+
+
+	signup : function(params, done){}
+}
+
 module.exports = mongoose.model('User', UserSchema);
