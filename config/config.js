@@ -1,15 +1,13 @@
+var config = {};
 
+config.secret = "jdZKYKwfTw9D9YMr";
 
-/*********************** DATABASE CONFIGURATION LOCALHOST ****************************/
-
-var databaseUrl = 'localhost:27017/node-express-mongo-seed';
-
-var port = 2791;
-
-exports.data = {
-	port: port,
-	databaseUrl : databaseUrl,
-	secret: "jdZKYKwfTw9D9YMr",
-	redisHost : "localhost",//"107.155.116.xxx",
-	redisPort: 6379
+config.server = {
+	host: process.env.SERVER_HOST || 'localhost',
+	port: process.env.SERVER_PORT || 2791
 };
+config.db = {
+	url: process.env.DATABASE_URL || 'localhost:27017/node-express-mongo-seed'
+}
+
+module.exports = config;
