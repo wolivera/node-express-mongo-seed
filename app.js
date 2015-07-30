@@ -2,6 +2,21 @@ var config = require('./config/config.js');
 var express = require('express');
 
 var app = express();
+/*
+	DB Connection
+*/
+db.connect();
+db.sync();
+
+/*
+	App Config
+*/
+server.config(app);
+
+/*
+	API Routing
+*/
+router.route(app);
 
 /*
 	Start server
