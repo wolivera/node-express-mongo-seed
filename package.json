@@ -1,0 +1,19 @@
+{
+  "name": "nodeExpressMongoSeed",
+  "version": "1.0.0",
+  "authors": 
+    "Williams Olivera <wolivera@codigodelsur.com>",
+  "description": "API model for node js + express application based",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "0.9.0",
+    "bcrypt": "0.8.1",
+    "body-parser": "1.12.0",
+    "crypto": "0.0.3",
+    "expect": "1.6.0",
+    "express": "4.12.2"
+  },
+  "main": "app.js"
+}
