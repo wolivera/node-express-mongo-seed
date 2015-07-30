@@ -1,9 +1,8 @@
 {
   "name": "nodeExpressMongoSeed",
   "version": "1.0.0",
-  "authors": 
-    "Williams Olivera <wolivera@codigodelsur.com>",
-  "description": "API model for node js + express application based",
+  "author": "Williams Olivera <liamsolivera@gmail.com>",
+  "description": "API model for node js + express + mongodb application based",
   "scripts": {
     "start": "node app.js"
   },
