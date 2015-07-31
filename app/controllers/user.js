@@ -29,10 +29,19 @@ exports.signup = function(req, res){
 		}
 	],
 	function (err, user){
-
+		if(err) return handleError(res, err); 
+		
 		res.json({
 			user: user
 		});
 	})
 	
 }
+
+function handleError(res, err){
+	var status = err.status || 500;
+	res.status(status);
+	return res.json({
+		errors: [err]
+	});
+};
