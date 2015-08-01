@@ -1,6 +1,7 @@
 var mongoose 	= require('mongoose');
 var Schema 		= mongoose.Schema;
 var bcrypt 		= require('bcrypt');
+var uuid 		= require('node-uuid');
 
 var UserSchema = new Schema({	
 	email: {
@@ -28,11 +29,14 @@ var UserSchema = new Schema({
 UserSchema.methods = {
 
 	createSession : function(done){
-				
+		var token = uuid.v4();
+		var data = {
+			userId : this._id,
+			email  : this.email
+		}
+		done(token);		
 	}
 };
-
-
 
 UserSchema.statics = {
 

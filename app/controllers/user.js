@@ -26,11 +26,16 @@ exports.signup = function(req, res){
 
 		function createUser(next){
 			User.signup(params, next);
+		},
+		function createSession(user, next){
+			user.createSession(function (token){				
+				next(null, user);
+			})
 		}
 	],
 	function (err, user){
 		if(err) return handleError(res, err); 
-		
+
 		res.json({
 			user: user
 		});
