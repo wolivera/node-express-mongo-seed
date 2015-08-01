@@ -1,5 +1,6 @@
 var async		= require('async');
 var User 		= require('../models/User');
+var constants 	= require('../utils/constants');
 
 exports.signup = function(req, res){
 	console.log('user.signup');
@@ -28,7 +29,8 @@ exports.signup = function(req, res){
 			User.signup(params, next);
 		},
 		function createSession(user, next){
-			user.createSession(function (token){				
+			user.createSession(function (token){
+				res.setHeader(constants.AUTH_TOKEN, token);//add as header
 				next(null, user);
 			})
 		}
