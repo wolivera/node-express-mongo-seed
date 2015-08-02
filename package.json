@@ -17,6 +17,12 @@
     "mongoskin": "1.4.12",
     "node-uuid": "^1.4.3",
     "redis": "2.2.3",
+    "superagent": "0.21.0",
+    "passport": "0.2.1",
+    "moment": "2.10.6"
   },
-  "main": "app.js"
+  "main": "app.js",
+  "engines": {
+    "node": "0.10.x"
+  }
 }
