@@ -1,3 +1,4 @@
+var config = require('../../config/config');
 var redis  = require('redis');
 
 exports.get = function(key, done){
@@ -20,4 +21,8 @@ exports.del = function(key, done){
 		cli.del(key);
 		done();
 	});
+}
+
+function getClient(){
+	return redis.createClient(config.redis.port,config.redis.host, {});
 }
