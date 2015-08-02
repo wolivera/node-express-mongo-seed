@@ -1,5 +1,5 @@
 {
-  "name": "nodeExpressMongoSeed",
+  "name": "NodeExpressMongoSeed",
   "version": "1.0.0",
   "author": "Williams Olivera <liamsolivera@gmail.com>",
   "description": "API model for node js + express + mongodb application based",
@@ -15,7 +15,8 @@
     "express": "4.12.2",
     "mongoose": "4.1.11",
     "mongoskin": "1.4.12",
-    "node-uuid": "^1.4.3"
+    "node-uuid": "^1.4.3",
+    "redis": "2.2.3",
   },
   "main": "app.js"
 }
