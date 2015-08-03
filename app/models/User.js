@@ -90,7 +90,9 @@ UserSchema.statics = {
 			}
 		], 
 		done);
-	}
+	},
+
+	login : function(params, done){}
 }
 
 module.exports = mongoose.model('User', UserSchema);

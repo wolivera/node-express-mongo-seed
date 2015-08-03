@@ -1,6 +1,7 @@
+var constants 	= require('../utils/constants');
+var cache 		= require('../utils/cacheHandler');
 var async		= require('async');
 var User 		= require('../models/User');
-var constants 	= require('../utils/constants');
 
 exports.signup = function(req, res){
 	console.log('user.signup');
@@ -43,6 +44,37 @@ exports.signup = function(req, res){
 		});
 	})
 	
+}
+
+exports.login = function(req, res){
+	console.log('user.login');
+
+	var email 		 	= req.body.email;
+  	var password 	 	= req.body.password;
+
+  	if (!email || !password){
+		return handleError(res, {
+			status: 400,
+			message: 'Missing parameters'
+		})	
+	}
+	var params = {
+		email		: email,
+		password 	: password
+	}
+
+	async.waterfall([
+
+		function findUser(next){
+			User.login(params, next);
+		}
+	],
+	function (err, user){
+		
+		res.json({
+			user: user
+		});
+	})
 }
 
 function handleError(res, err){
