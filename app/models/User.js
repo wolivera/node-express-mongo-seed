@@ -45,7 +45,18 @@ UserSchema.statics = {
 
 		var User = this;
 
-		async.waterfall([			
+		async.waterfall([
+			function validateEmailFormat(next){
+				var isValid = utilities.validateEmail(params.email);
+				if(!isValid){
+					var err = {
+            			status  : 400,
+            			message : "Email format is incorrect"
+					}
+					return next(err);
+				}
+				next();
+			},
 			function validateUniqueEmail(next){
 				User.count({ 'email': params.email }, function (err, count) {
                 	if (err) return next(err);
