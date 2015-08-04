@@ -92,7 +92,33 @@ UserSchema.statics = {
 		done);
 	},
 
-	login : function(params, done){}
+	login : function(params, done){
+
+		var User = this;
+
+		async.waterfall([		
+
+			function validateExists(next){
+				User.findOne({'email': params.email}, function (err, user){
+                	if (err) return next(err);
+
+                	if(!user){
+                		var err = {
+                			status  : 404,
+                			message : "User does not exist"
+                		}                		
+                	}
+
+                	next(err, user);
+                });
+			}
+		], 
+		function (err, user){
+			if(err) return handleError(err, done);
+
+			done(null, user);
+		})
+	}
 }
 
 module.exports = mongoose.model('User', UserSchema);
