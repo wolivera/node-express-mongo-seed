@@ -111,6 +111,22 @@ UserSchema.statics = {
 
                 	next(err, user);
                 });
+			},
+			function validatePassword(user, next){
+
+				bcrypt.compare(params.password, user.password, function(err, isMatch) {
+					if (err) return next(err);
+
+					if(!isMatch){
+                		var err = {
+                			status  : 404,
+                			message : "Invalid password"
+                		}                		
+                	}
+                	delete user.password;
+
+                	next(err, user);
+				});
 			}
 		], 
 		function (err, user){
