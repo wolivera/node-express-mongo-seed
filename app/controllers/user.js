@@ -67,10 +67,17 @@ exports.login = function(req, res){
 
 		function findUser(next){
 			User.login(params, next);
+		},
+		function createSession(user, next){
+			user.createSession(function (token){
+				res.setHeader(constants.AUTH_TOKEN, token);//add as header
+				next(null, user);
+			})
 		}
 	],
 	function (err, user){
-		
+		if(err) return handleError(res, err); 
+
 		res.json({
 			user: user
 		});
