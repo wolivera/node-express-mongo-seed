@@ -134,6 +134,10 @@ UserSchema.statics = {
 
 			done(null, user);
 		})
+	},
+
+	logout : function(token, done){
+		cache.del(token, done);
 	}
 }
 
