@@ -84,6 +84,16 @@ exports.login = function(req, res){
 	})
 }
 
+exports.logout = function(req, res)	{
+	var token = req.headers[constants.AUTH_TOKEN];
+
+	User.logout(token, function (err){
+		if(err) return handleError(res, err); 
+
+		res.json({});
+	})
+};
+
 function handleError(res, err){
 	var status = err.status || 500;
 	res.status(status);
