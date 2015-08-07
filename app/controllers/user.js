@@ -5,6 +5,10 @@ var User 		= require('../models/User');
 
 exports.validateSession = function(req, res, next){
 
+	if(isPublicMethod(req.path)){
+		return next();
+	}
+
 	var token = req.headers[constants.AUTH_TOKEN];
 
 	cache.get(token, function (err, user){
@@ -21,6 +25,14 @@ exports.validateSession = function(req, res, next){
 		next();
 	})
 
+	function isPublicMethod(path){
+		var publicMethods = [
+			'/swagger',
+			'/users',
+			'/users/login'
+		]
+		return publicMethods.indexOf(path) !== -1;
+	}
 }
 
 exports.signup = function(req, res){
