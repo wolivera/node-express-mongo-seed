@@ -3,6 +3,26 @@ var cache 		= require('../utils/cacheHandler');
 var async		= require('async');
 var User 		= require('../models/User');
 
+exports.validateSession = function(req, res, next){
+
+	var token = req.headers[constants.AUTH_TOKEN];
+
+	cache.get(token, function (err, user){
+		
+		if (err) return handleError(res, err);
+
+		if (!user) {
+			return handleError(res, {
+				status: 401,
+				message: 'Unauthorized user. Please login and try again.'
+			})
+		}
+		req.user = user;
+		next();
+	})
+
+}
+
 exports.signup = function(req, res){
 	console.log('user.signup');
 
