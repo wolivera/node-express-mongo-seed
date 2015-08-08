@@ -1,7 +1,10 @@
 var mongoose 	= require('mongoose');
 var Schema 		= mongoose.Schema;
 var bcrypt 		= require('bcrypt');
+var async 		= require('async');
 var uuid 		= require('node-uuid');
+var cache 		= require('../utils/cacheHandler');
+var utilities	= require('../utils/utilities');
 
 var UserSchema = new Schema({	
 	email: {
@@ -34,6 +37,7 @@ UserSchema.methods = {
 			userId : this._id,
 			email  : this.email
 		}
+		cache.set(token, data);
 		done(token);		
 	}
 };
@@ -139,6 +143,19 @@ UserSchema.statics = {
 	logout : function(token, done){
 		cache.del(token, done);
 	}
+
+};
+
+function handleError(err, next){
+	if(!err.status){
+		console.log("INTERNAL ERROR:");
+		console.log(err);
+		err = {
+			status  : 500,
+			message : "Internal Server Error"
+		}
+	}
+	next(err);	
 }
 
 module.exports = mongoose.model('User', UserSchema);
