@@ -14,6 +14,17 @@ var config = require('./config');
 exports.config = function(app){
 	app.use(express.static(__dirname + '/public'));
 	app.set('port', config.server.port);
-	app.use(cookieParser());	
+	app.use(cookieParser());
+	app.use(session({
+		secret: 'node-express-mongo-seed-secret',
+		saveUninitialized: true,
+		resave: true
+	}));
+	app.use(passport.initialize());
+	app.use(passport.session());
+	app.use(bodyParser.urlencoded({
+		extended: true
+	}));
 	app.use(bodyParser.json());
+	app.use(flash());
 }
