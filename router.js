@@ -6,6 +6,8 @@ var userRoutes 	= require('./app/routes/user');
 */
 exports.route = function(app) {
 
+	app.use(userCtrl.validateSession);
+
 	app.use('/users', userRoutes);
 
 };
