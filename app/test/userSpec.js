@@ -115,6 +115,52 @@ describe('User Controller', function() {
 
 		});
 
+		it('should return 400 and an error for invalid email', function (done) {
+
+			request
+				.post(url + '/users')
+				.set({})
+				.send({
+					email 		: "test@mail",
+			      	password 	: "test123",
+			      	firstName	: "test",
+			      	lastName 	: "user"
+				})
+				.end(function (err, res){
+			        expect(res).to.exist;
+			        expect(res.status).to.equal(400);
+			        expect(res.body.errors).to.exist;
+			        expect(res.body.errors[0]).to.exist;
+			        expect(res.body.errors[0].message).to.equal("Email format is incorrect");
+
+			        done();
+		      	});
+
+		});
+
+		it('should return 400 and an error for existing user', function (done) {
+
+			request
+				.post(url + '/users')
+				.set({})
+				.send({
+					email 		: "test2@test.com",
+			      	password 	: "test123",
+			      	firstName	: "test",
+			      	lastName 	: "user"
+				})
+				.end(function (err, res){
+			        expect(res).to.exist;
+			        expect(res.status).to.equal(400);
+			        expect(res.body.errors).to.exist;
+			        expect(res.body.errors[0]).to.exist;
+			        expect(res.body.errors[0].message).to.equal("Email already in use");
+
+			        done();
+		      	});
+
+		});
+
 	});
 
 });
