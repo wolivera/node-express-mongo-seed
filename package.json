@@ -4,7 +4,8 @@
   "author": "Williams Olivera <liamsolivera@gmail.com>",
   "description": "API model for node js + express + mongodb application based",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha app/test"
   },
   "dependencies": {
     "async": "1.4.2",
@@ -24,6 +25,10 @@
     "superagent": "0.21.0",
     "passport": "0.2.1",
     "moment": "2.10.6"
+  },
+  "devDependencies": {
+    "chai" : "3.3.0",
+    "mocha" : "2.3.3"
   },
   "main": "app.js",
   "engines": {
