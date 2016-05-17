@@ -1,8 +1,11 @@
-README FILE
 
-Node Express Mongo Seed 
+# Node Express Mongo Seed 
 
-The following features are included:
+This is an open source project with a basic set of features based on Node, Express and Mongo DB. 
+
+## Content:
+
+**The following features are included:**
 
 - Folder structures
 - Mongo database connection
@@ -20,16 +23,25 @@ The following features are included:
 - Password encryption
 - Mocha unit tests for services
 
+## Main technologies used: 
 
-* MongoDB NoSQL Database: https://www.mongodb.org/
-	-	Install mongodb 
-	-	Adjust your connection configuration in config/db.js file
+#### [Node.js](https://nodejs.org/)
+#### [MongoDB](https://www.mongodb.org/) NoSQL Database 
+#### [Express](http://expressjs.com/) Node.js framework
+#### [Mocha](http://mochajs.org/) unit testing
+#### [Redis](http://redis.io/)
 
-* Express Node Js framework: http://expressjs.com/
 
-* Mocha unit testing: http://mochajs.org/
-	-	To execute tests with Mocha run: npm test
+## Instalation: 
 
-* Node JS: https://nodejs.org/
-	-	Install node js
-	-	run node app.js or npm start 
+- Clone the repository
+- Install ```mongodb``` 
+- Install ```Node.js```
+- Install ```Redis```
+- Adjust your connection configuration in ```config/db.js``` file
+- Run ```node app.js``` or ```npm start``` 
+- To execute tests with Mocha run: ```npm test```
+
+## LICENSE:
+
+MIT, see [LICENSE.md](https://github.com/williamsolivera/node-express-mongo-seed/blob/master/LICENSE).
